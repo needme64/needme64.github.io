@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <title>You Need Me ARG</title>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:monospace;}
-    body{background:black;color:red;height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;}
-    #password-link{position:absolute;top:20px;right:25px;color:red;text-decoration:none;font-size:26px;font-weight:bold;letter-spacing:2px;}
-    #password-link:hover{text-decoration:underline;}
-    h1{font-size:48px;margin-bottom:30px;letter-spacing:4px;}
-    input{background:black;border:2px solid red;color:red;padding:14px;width:320px;font-size:20px;text-align:center;margin-bottom:15px;}
-    button{background:black;border:2px solid red;color:red;padding:12px 30px;font-size:20px;cursor:pointer;letter-spacing:2px;}
-    button:hover{background:red;color:black;}
-    #errorText{margin-top:25px;font-size:18px;text-align:center;max-width:500px;}
-    #finalLink{margin-top:30px;font-size:26px;font-weight:bold;text-align:center;}
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: monospace; }
+    body { background: black; color: red; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    #password-link { position: absolute; top: 20px; right: 25px; color: red; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 2px; }
+    #password-link:hover { text-decoration: underline; }
+    h1 { font-size: 48px; margin-bottom: 30px; letter-spacing: 4px; }
+    input { background: black; border: 2px solid red; color: red; padding: 14px; width: 320px; font-size: 20px; text-align: center; margin-bottom: 15px; }
+    button { background: black; border: 2px solid red; color: red; padding: 12px 30px; font-size: 20px; cursor: pointer; letter-spacing: 2px; }
+    button:hover { background: red; color: black; }
+    #errorText { margin-top: 25px; font-size: 18px; text-align: center; max-width: 500px; }
+    #finalLink { margin-top: 30px; font-size: 26px; font-weight: bold; text-align: center; display: none; }
   </style>
 </head>
 <body>
@@ -24,11 +24,7 @@
   </audio>
 
   <!-- Botão PASSWORD (sempre visível, link muda conforme etapa) -->
-  <a href="https://www.youtube.com/watch?v=L0qJtaYJMF8"
-     target="_blank"
-     id="password-link">
-    PASSWORD
-  </a>
+  <a href="https://www.youtube.com/watch?v=L0qJtaYJMF8" target="_blank" id="password-link">PASSWORD</a>
 
   <h1>YOU NEED ME</h1>
 
@@ -59,34 +55,33 @@ function textToBinary(text){
 function checkPassword(){
   const input = passwordInput.value.trim().toLowerCase();
 
-  if(stage===1){
-    // primeira senha
+  if(stage === 1){
+    // Primeira senha
     if(input === "good morning"){
       errorText.textContent = "SECOND PASSWORD REQUIRED";
       passwordInput.value = "";
       stage = 2;
 
-      // muda o link do botão PASSWORD para o vídeo da música
+      // Muda o link do botão PASSWORD para o vídeo da música
       passwordLink.href = "https://www.youtube.com/watch?v=5zUCycFEGQU&list=RD5zUCycFEGQU&start_radio=1";
-
     } else {
       errorText.textContent = "THE MOST SAYED WORD IN THE SONG SHALL BE YOUR SALVATION";
     }
-
-  } else if(stage===2){
+  } else if(stage === 2){
     const binaryPassword = textToBinary("you needed me");
 
     if(input === binaryPassword){
-      // senha correta em binário
+      // Senha correta em binário
       errorText.textContent = "";
       passwordInput.style.display = "none";
-      finalLink.innerHTML = `<a href="https://www.roblox.com/pt/users/10446941833/profile" target="_blank">CLICK HERE TO SEE THE ROBLOX ACCOUNT</a>`;
+      finalLink.innerHTML = `<a href="https://www.roblox.com/pt/users/10446941833/profile" target="_blank" style="color: red; font-size: 32px; font-weight: bold;">CLICK HERE TO SEE THE ROBLOX ACCOUNT</a>`;
+      finalLink.style.display = "block"; // Exibe o link
     } else {
-      if(input.replace(/\s/g,'') === "" || input === "you needed me"){
-        // errou digitando texto normal
+      if(input.replace(/\s/g, '') === "" || input === "you needed me"){
+        // Errou digitando texto normal
         errorText.textContent = "WHAT IS THE NAME OF THE SONG?";
       } else {
-        // qualquer outro erro
+        // Qualquer outro erro
         errorText.textContent = "IN BINARY";
       }
     }
